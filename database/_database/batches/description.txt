@@ -1,0 +1,2 @@
+This folder is used for storing JV scan files.
+In the form: BXXX -> jv_data -> subfolder_jvs -> SXX 
