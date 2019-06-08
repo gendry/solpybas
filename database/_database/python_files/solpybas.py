@@ -10055,7 +10055,6 @@ class Plotter:
 			'mn': self.mn_spin_var.get(), 
 			'mat_type': self.tab_mat_type.get(),
 			'wt_perc':self.wtperc_spin_var.get(),
-			'state':0,
 			}
 		function_name = 'materials'
 		material_results = self.materials_mod(self, materials_dict, function_name, self.conn)
