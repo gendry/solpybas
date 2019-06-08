@@ -60,3 +60,4 @@ INSERT INTO treatment_methods (id, name) VALUES (3, 'Light');
 INSERT INTO electrode_patterns (id, elec_type,elec_name) VALUES (0, 'top','TE-8P-SW-4mm');
 INSERT INTO electrode_patterns (id, elec_type,elec_name) VALUES (1, 'bottom','BE-SW-28mm');
 INSERT INTO materials (id, common_name) VALUES (0, 'None');
+INSERT INTO deposition_conds (id, name) VALUES (0, 'None');
