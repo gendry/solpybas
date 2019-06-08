@@ -5625,28 +5625,30 @@ class Plotter:
 		
 		#Make the list items be from the .dat file 
 		self.tab_stack_top_elec_box_var = StringVar()
-		top_elecs_data = numpy.genfromtxt(self.top_elec_pat_file, skip_header=1, delimiter='\t', dtype=None, invalid_raise=False, encoding='latin1')
-		top_elecs = [i[0] for i in top_elecs_data]
-		self.tab_stack_top_elec_list = top_elecs
+		#top_elecs_data = numpy.genfromtxt(self.top_elec_pat_file, skip_header=1, delimiter='\t', dtype=None, invalid_raise=False, encoding='latin1')
+		#top_elecs = [i[0] for i in top_elecs_data]
+		self.tab_stack_top_elec_list = []
 		self.tab_stack_top_elec_box = Combobox(self.tab_stack_frame, textvariable=self.tab_stack_top_elec_box_var, width=20)
 		#### first box so no need for a command #####
 		self.tab_stack_top_elec_box.bind('<<ComboboxSelected>>')
 		self.tab_stack_top_elec_box['values'] = self.tab_stack_top_elec_list
 		self.tab_stack_top_elec_box.grid(row=9, column=1, sticky=W)
-
+		self.tab_stack_update_top_elec_drop_down()
+		
 		self.tab_stack_bot_elec_lab = Label(self.tab_stack_frame, text="Bottom Electrode Pattern")
 		self.tab_stack_bot_elec_lab.grid(row=10, column=0, sticky=NW)
 		
 		#Make the list items be from the .dat file 
 		self.tab_stack_bot_elec_box_var = StringVar()
-		bot_elecs_data = numpy.genfromtxt(self.bot_elec_pat_file, skip_header=1, delimiter='\t', dtype=None, invalid_raise=False, encoding='latin1')
-		bot_elecs = [i[0] for i in bot_elecs_data]
-		self.tab_stack_bot_elec_list = bot_elecs
+		#bot_elecs_data = numpy.genfromtxt(self.bot_elec_pat_file, skip_header=1, delimiter='\t', dtype=None, invalid_raise=False, encoding='latin1')
+		#bot_elecs = [i[0] for i in bot_elecs_data]
+		self.tab_stack_bot_elec_list = []
 		self.tab_stack_bot_elec_box = Combobox(self.tab_stack_frame, textvariable=self.tab_stack_bot_elec_box_var, width=20)
 		#### first box so no need for a command #####
 		self.tab_stack_bot_elec_box.bind('<<ComboboxSelected>>')
 		self.tab_stack_bot_elec_box['values'] = self.tab_stack_bot_elec_list
 		self.tab_stack_bot_elec_box.grid(row=10, column=1, sticky=W)
+		self.tab_stack_update_bot_elec_drop_down()
 		
 		self.tab_stack_commit_but = Button(self.tab_stack_frame, text='Commit Stack to Database', command=self.commit_stack)
 		self.tab_stack_commit_but.grid(row=11, column=0, sticky=NW, columnspan=1)
@@ -5675,6 +5677,20 @@ class Plotter:
 		self.tab_stack_picture_canvas.configure(yscrollcommand=self.tab_stack_picture_scroll.set,scrollregion=self.tab_stack_picture_canvas.bbox("all"))
 		self.tab_stack_picture_canvas.yview_moveto(1)
 	
+	def self.tab_stack_update_top_elec_drop_down(self,*args):
+		result = select_many_things_where(self, 'elec_name', 'electrode_patterns', 'elec_name', 'top')
+		if result:
+			self.tab_stack_top_elec_list = []
+			for i in result:
+				self.tab_stack_top_elec_list.append(i[0])
+			self.tab_stack_top_elec_box['values'] = list(sorted(self.tab_stack_top_elec_list))
+	def self.tab_stack_update_bot_elec_drop_down(self,*args):
+		result = select_many_things_where(self, 'elec_name', 'electrode_patterns', 'elec_name', 'bottom')
+		if result:
+			self.tab_stack_bot_elec_list = []
+			for i in result:
+				self.tab_stack_bot_elec_list.append(i[0])
+			self.tab_stack_bot_elec_box['values'] = list(sorted(self.tab_stack_bot_elec_list))
 	def tab_stack_update(self, *args):
 		result = tkMessageBox.askyesno("Update Device Stack?", 'Do you want to update "%s" device stack in the database?\nRecords will be deleted and replaced.' % (self.tab_stack_name_box.get()), icon='warning')
 
