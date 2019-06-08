@@ -5677,14 +5677,14 @@ class Plotter:
 		self.tab_stack_picture_canvas.configure(yscrollcommand=self.tab_stack_picture_scroll.set,scrollregion=self.tab_stack_picture_canvas.bbox("all"))
 		self.tab_stack_picture_canvas.yview_moveto(1)
 	
-	def self.tab_stack_update_top_elec_drop_down(self,*args):
+	def tab_stack_update_top_elec_drop_down(self,*args):
 		result = select_many_things_where(self, 'elec_name', 'electrode_patterns', 'elec_name', 'top')
 		if result:
 			self.tab_stack_top_elec_list = []
 			for i in result:
 				self.tab_stack_top_elec_list.append(i[0])
 			self.tab_stack_top_elec_box['values'] = list(sorted(self.tab_stack_top_elec_list))
-	def self.tab_stack_update_bot_elec_drop_down(self,*args):
+	def tab_stack_update_bot_elec_drop_down(self,*args):
 		result = select_many_things_where(self, 'elec_name', 'electrode_patterns', 'elec_name', 'bottom')
 		if result:
 			self.tab_stack_bot_elec_list = []
