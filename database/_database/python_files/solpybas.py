@@ -96,14 +96,14 @@ class Plotter:
 		if platform.system() == "Windows":
 			self.conn = sqlite3.connect('..\\..\\_database\\sqlite\\%s' % db_name)
 			self.base_file_path = '..\\..\\_database\\batches\\'
-			self.top_elec_pat_file = '..\\..\\_database\\deps\\top_electrode_patterns.dat'
-			self.bot_elec_pat_file = '..\\..\\_database\\deps\\bottom_electrode_patterns.dat'
+			#self.top_elec_pat_file = '..\\..\\_database\\deps\\top_electrode_patterns.dat'
+			#self.bot_elec_pat_file = '..\\..\\_database\\deps\\bottom_electrode_patterns.dat'
 		else:
 			self.conn = sqlite3.connect('../../_database/sqlite/%s' % db_name)
 			#### the base file path for data files
 			self.base_file_path = '../../_database/batches/'
-			self.top_elec_pat_file = '../../_database/deps/top_electrode_patterns.dat'
-			self.bot_elec_pat_file = '../../_database/deps/bottom_electrode_patterns.dat'
+			#self.top_elec_pat_file = '../../_database/deps/top_electrode_patterns.dat'
+			#self.bot_elec_pat_file = '../../_database/deps/bottom_electrode_patterns.dat'
 
 		self.wholeframe = Notebook(master)
 		#tab 1 for Device Stacks
